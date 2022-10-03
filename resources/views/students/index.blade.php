@@ -16,22 +16,30 @@
                     </thead>
                     <tbody>
                         @foreach ($student as $students)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $students->name }}</td>
-                            <td>{{ $students->date_of_birth }}</td>
-                            <td>{{ $students->gender }}</td>
-                            <td>
-                                {{$students->hobby}}
-                            </td>
-                            <td>{{ $students->nationality }}</td>
-                            <td>
-                                <a href="{{ route('student.edit', $students->id) }}"><button class="btn btn-info">Edit</button></a>
-                                <a href="{{ route('student.delete', $students->id) }}"><button type="submit" class="btn btn-danger">
-                                        Delete </button></a>
-                            </td>
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $students->name }}</td>
+                                <td>{{ $students->date_of_birth }}</td>
+                                <td>{{ $students->gender }}</td>
+                                <td>
+                                    @php
+                                        $hobbies = explode(',', $students->hobby);
+                                        
+                                    @endphp
+                                    @foreach ($hobbies as $hobby)
+                                        {{ $hobby }}
+                                    @endforeach
+                                </td>
+                                <td>{{ $students->nationality }}</td>
+                                <td>
+                                    <a href="{{ route('student.edit', $students->id) }}"><button
+                                            class="btn btn-info">Edit</button></a>
+                                    <a href="{{ route('student.delete', $students->id) }}"><button type="submit"
+                                            class="btn btn-danger">
+                                            Delete </button></a>
+                                </td>
 
-                        </tr>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

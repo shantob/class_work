@@ -15,6 +15,7 @@ class StudentController extends Controller
     public function index()
     {
         $student = Student::all();
+
         return view('students.index', compact('student'));
     }
 
@@ -37,11 +38,13 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $hobby = implode(',', $request->category);
         Student::create([
             'name' => $request->name,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
-            'hobby' => json_encode($request->category),
+            'hobby' => $request->category,
+            'hobby' => $hobby,
             'nationality' => $request->nationality,
         ]);
         return redirect()->route('student.index')->with('success', 'SuccessFully Created Category');
@@ -67,7 +70,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
-       
+        $student->hobby = explode(',', $student->hobby);
         return view('students.edit', compact('student'));
     }
 
@@ -81,11 +84,12 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $students = Student::find($id);
+        $hobby = implode(',', $request->category);
         $data = [
             'name' => $request->name,
             'date_of_birth' => $request->date_of_birth,
             'gender' => $request->gender,
-            'hobby' => json_encode($request->category),
+            'hobby' => $hobby,
             'nationality' => $request->nationality,
         ];
         $students->update($data);

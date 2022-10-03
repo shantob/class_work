@@ -19,26 +19,32 @@
                     </select>
                     <div class="form-group">
                         <label><strong>Type</strong></label><br>
-                        <label><input type="radio" name="type" value="HTML">HTML</label>
-                        <label><input type="radio" name="type" value="CSS"> CSS</label>
-                        <label><input type="radio" name="type" value="PHP"> PHP</label>
+
+                        <label><input type="radio" name="type"
+                                value="HTML"{{ $courses->type == 'HTML' ? 'checked' : '' }}>HTML</label>
+                        <label><input type="radio" name="type" value="CSS"
+                                {{ $courses->type == 'CSS' ? 'checked' : '' }}> CSS</label>
+                        <label><input type="radio" name="type" value="PHP"
+                                {{ $courses->type == 'PHP' ? 'checked' : '' }}> PHP</label>
                     </div>
 
                     <select class="form-select" aria-label="Default select example" name="tecnology">
-                  
+
                         <option value="{{ $courses->tecnology }}" selected>{{ $courses->tecnology }}</option>
-                     
+
                         <option value="Softwore">Softwore</option>
                         <option value="Data-Science">Data-Science</option>
                         <option value="Web Development">Web Development</option>
-                        
+
                     </select>
 
                     <label for="duration">Duration</label>
-                    <input type="number" name="duration" id="duration" class="form-control" value="{{$courses->duration}}" />
+                    <input type="number" name="duration" id="duration" class="form-control"
+                        value="{{ $courses->duration }}" />
                     <br>
                     <label for="start_date">Start Date</label>
-                    <input type="date" name="start_date" id="start_date" class="form-control" value="{{$courses->start_date}}" />
+                    <input type="date" name="start_date" id="start_date" class="form-control"
+                        value="{{ $courses->start_date }}" />
                     <br>
 
                     <button type="submit" class="btn btn-success">Update Now</button>
@@ -46,4 +52,3 @@
             </div>
         </div>
 </x-master>
-

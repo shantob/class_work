@@ -84,7 +84,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'title' => $request->title,
             'category' => $request->category,
-            'is_active' => $request->is_active,
+            'is_active' => $request->is_active ? true : false,
             'description' => $request->description,
         ];
         $products->update($data);
