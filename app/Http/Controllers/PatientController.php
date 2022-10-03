@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class PatientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $student = Student::all();
-        return view('students.index', compact('student'));
+        $patients = Patient::all();
+        return view('patient.index', compact('patients'));
     }
 
     /**
@@ -25,7 +20,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('patient.create');
     }
 
     /**
@@ -37,14 +32,16 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        Student::create([
+        Patient::create([
             'name' => $request->name,
-            'date_of_birth' => $request->date_of_birth,
-            'gender' => $request->gender,
-            'hobby' => json_encode($request->category),
-            'nationality' => $request->nationality,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'lust_visit' => $request->lust_visit,
+            'department' => $request->department,
+            'distric' => $request->distric,
         ]);
-        return redirect()->route('student.index')->with('success', 'SuccessFully Created Category');
+        return redirect()->route('patient.index')->with('success', 'SuccessFully Created Course');
     }
 
     /**
@@ -66,9 +63,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        $student = Student::find($id);
-       
-        return view('students.edit', compact('student'));
+        $patients = Patient::find($id);
+        return view('patient.edit', compact('patients'));
     }
 
     /**
@@ -80,16 +76,18 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $students = Student::find($id);
+        $patients = Patient::find($id);
         $data = [
             'name' => $request->name,
-            'date_of_birth' => $request->date_of_birth,
-            'gender' => $request->gender,
-            'hobby' => json_encode($request->category),
-            'nationality' => $request->nationality,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'lust_visit' => $request->lust_visit,
+            'department' => $request->department,
+            'distric' => $request->distric,
         ];
-        $students->update($data);
-        return redirect()->route('student.index')->with('success', 'Students edit Successdfully');
+        $patients->update($data);
+        return redirect()->route('patient.index')->with('success', 'Course edit Successdfully');
     }
 
     /**
@@ -100,8 +98,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        $student = Student::find($id);
-        $student->delete();
-        return redirect()->route('student.index')->with('success', 'successfully delete');
+        $patients = Patient::find($id);
+        $patients->delete();
+        return redirect()->route('patient.index')->with('success', 'successfully delete');
     }
 }
