@@ -5,33 +5,22 @@
                 <form action="{{ route('product.update', $product->id) }}" method="post">
                     @csrf
                     @method('patch')
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" name="name"
-                            placeholder="name............" value="{{ $product->name }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Title</label>
-                        <input type="text" class="form-control" name="title"value="{{ $product->title }}">
-                    </div>
-                    <select class="form-select" aria-label="Default select example" name="category">
-                        <option value="{{ $product->category }}" selected>{{ $product->category }}</option>
-                        <option value="Snikers">Snikers</option>
-                        <option value="T-shirt">T-shirt</option>
-                        <option value="Shirt">Shirt</option>
-                        <option value="Electronic">Electronic</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <x-form.input type="text" name="name" label="Name Of Product" product="{{$product->name}}" class="text-dark"  placeholder="Name Of product" />
+
+                    <x-form.input type="text" name="title" label="Title" class="text-dark" placeholder="Product Title" />
 
 
-                    <div class="form-group">
-                        <label><strong>Is Active :</strong></label><br>
-                        <label><input type="checkbox" name="is_active" value="is_active"
-                                {{ $product->is_active == '1' ? 'checked' : '' }}>
-                            Is_active</label>
-                    </div>
-                    <label for="description">Discription</label>
-                    <textarea name="descruotuin" id="description" cols="30" rows="10">{{ $product->discription }}</textarea>
+                    <x-form.select name="category" label="Select Category" name="category" id="category" :options="[
+        'Snikers' => 'Snikers',
+        'T-shirt' => 'T-shirt',
+        'Shirt' => 'Shirt',
+        'Electronic' => 'Electronic',
+]" />
+
+                    <x-form.checkbox type="checkbox" name="is_active" lable="Is Active :" id="pre-checked-2" value="1" />
+
+                    <x-form.textarea name="description" label="Description" class="text-dark" placeholder="Write Here ............." />
+
 
                     <button type="submit" class="btn btn-success">Submit Now</button>
                 </form>

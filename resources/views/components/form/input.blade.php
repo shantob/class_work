@@ -1,4 +1,4 @@
-@props(['name', 'type' => 'text',  'label' => ''])
+@props(['name','product', 'type' => 'text',  'label' => ''])
 
 <div class="mb-3">
     @if($label)
@@ -9,7 +9,7 @@
         name="{{ $name }}" 
         type="{{ $type }}" 
         id="{{ $name }}Input" 
-        value="{{ old($name) }}" 
+        value="{{ old('name')}}" 
         {{ $attributes->merge(['class' => 'form-control']) }}
     >
     @error($name)

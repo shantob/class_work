@@ -1,38 +1,29 @@
 <x-master>
-        <div class="col-md-8 px-2 mx-3">
-    <div class="card">
-        <div class="card-body">
-            <form action="{{ route('product.store') }}" method="post">
-                @csrf
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="name"
-                        placeholder="name............">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Title</label>
-                    <input type="text" class="form-control" name="title">
-                </div>
-                <select class="form-select" aria-label="Default select example" name="category">
-                    <option value="" disabled selected>(select One)</option>
-                    <option value="Snikers">Snikers</option>
-                    <option value="T-shirt">T-shirt</option>
-                    <option value="Shirt">Shirt</option>
-                    <option value="Electronic">Electronic</option>
-                    <option value="Other">Other</option>
-                </select>
+    <div class="col-md-8 px-2 mx-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="text-center text-light p-3 bg-dark">Create Product</h5>
+                <form action="{{ route('product.store') }}" method="post">
+                    @csrf
+                    <x-form.input type="text" name="name" label="Name Of Product" class="text-dark" placeholder="Name Of product" />
+
+                    <x-form.input type="text" name="title" label="Title" class="text-dark" placeholder="Product Title" />
 
 
-                <div class="form-group">
-                    <label><strong>Is Active :</strong></label><br>
-                    <label><input type="checkbox" name="is_active" value="1"> Is_active</label>
-                </div>
-                <label for="description">Discription</label>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                <br>
+                    <x-form.select name="category" label="Select Category" name="category" id="category" :options="[
+                            'Snikers' => 'Snikers',
+                            'T-shirt' => 'T-shirt',
+                            'Shirt' => 'Shirt',
+                            'Electronic' => 'Electronic',
+                 ]" />
 
-                <button type="submit" class="btn btn-success">Resister Now</button>
-            </form>
+                 <x-form.checkbox  type="checkbox" name="is_active" lable="Is Active :" id="pre-checked-2" value="1" />
+
+                 <x-form.textarea name="description" label="Description" class="text-dark" placeholder="Write Here ............." />
+
+
+                    <button type="submit" class="btn btn-success">Resister Now</button>
+                </form>
+            </div>
         </div>
-    </div>
 </x-master>
